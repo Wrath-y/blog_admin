@@ -1,5 +1,18 @@
 <template>
 	<el-card>
+        <form @submit.prevent="fetchList()">
+            <div style="width: 240px;display:inline-block">
+                <el-input placeholder="搜索" v-model="form.keyword" size="mini"/>
+            </div>
+            <div style="display:inline-block">
+                <el-button native-type="submit" size="mini">筛选</el-button>
+            </div>
+            <div style="display:inline-block">
+                <router-link to="form" append>
+                        <el-button size="mini">添加</el-button>
+                    </router-link>
+            </div>
+        </form>
         <el-table :data="list" v-loading="loading" size="mini">
             <el-table-column prop="id" label="ID" width="100"/>
             <el-table-column prop="title" label="标题"/>
@@ -10,39 +23,67 @@
                     <router-link :to="`${row.id}`" append>
                         <el-button size="mini">编辑</el-button>
                     </router-link>
+                    <el-button type="danger" size="mini" @click="deleteHandler(row.id)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
+        <div style="text-align: center">
+            <el-pagination layout="total, prev, pager, next"
+                           @current-change="fetchList"
+                           :page-size="pagination.page_size"
+                           :total="pagination.total">
+            </el-pagination>
+        </div>
     </el-card>
 </template>
 
 <script>
-import {Table, TableColumn, Pagination} from 'element-ui';
+import {Table, TableColumn, Pagination, Form} from 'element-ui';
 
 export default {
     components: {
         [Table.name]: Table,
         [TableColumn.name]: TableColumn,
         [Pagination.name]: Pagination,
+        [Form.name]: Form,
     },
     data() {
         return {
             loading: false,
-			list: [
-				{
-					id: 1,
-				},
-				{
-					id: 2,
-				}
-			],
+            pagination: {
+                total: 0,
+                page_size: 15,
+            },
+            form: {
+                page: 1,
+            },
+			list: [],
 		};
     },
     computed: {},
     watch: {},
     methods: {
+        async fetchList() {
+            this.loading = true;
+            await this.$axios.$get('articles', this.form).then((res) => {
+                if (res) {
+                    this.list = res.Data.data;
+                    this.pagination.total = res.Data.count;
+                }
+            }).finally(() => {
+                this.loading = false;
+            });
+        },
+        async deleteHandler(id) {
+            this.loading = true;
+            await this.$axios.delete('articles/'+id).finally(() => {
+                this.loading = false;
+                this.fetchList();
+            });
+        },
     },
-    mounted() {
+    created() {
+        this.fetchList();
     },
     beforeDestroy() {
     },

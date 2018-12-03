@@ -44,7 +44,6 @@ export default {
     .content {
         float: right;
         width: 85%;
-        height: 1080px;
     }
 }
 </style>

@@ -1,19 +1,23 @@
 <template>
     <div class="navtop">
         <el-menu
-            default-active="2"
+            router
+            default-active="/"
             class="el-menu-vertical-demo">
             <el-menu-item index="/articles">
                 <i class="el-icon-menu"></i>
                 <span slot="title">文章列表</span>
             </el-menu-item>
-            <el-submenu index="1">
+            <el-submenu index="/setting">
                 <template slot="title">
                     <i class="el-icon-location"></i>
                     <span>设置</span>
                 </template>
                 <el-menu-item-group>
-                    <el-menu-item index="/#">...</el-menu-item>
+                    <el-menu-item index="/">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">...</span>
+                    </el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
         </el-menu>

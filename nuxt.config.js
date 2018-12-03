@@ -46,7 +46,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~plugins/element-ui', ssr: true },
+    '~plugins/element-ui',
     '~/plugins/axios'
   ],
 
@@ -62,7 +62,7 @@ module.exports = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
-    baseURL: 'http://127.0.0.1/8081',
+    baseURL: 'http://127.0.0.1:8081',
   },
 
   /*
