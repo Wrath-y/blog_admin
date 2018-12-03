@@ -4,7 +4,7 @@
             router
             default-active="/"
             class="el-menu-vertical-demo">
-            <el-menu-item index="/admin/articles">
+            <el-menu-item index="/articles">
                 <i class="el-icon-menu"></i>
                 <span slot="title">文章列表</span>
             </el-menu-item>
