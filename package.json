@@ -18,7 +18,8 @@
     "node-sass": "^4.10.0",
     "nuxt": "^2.0.0",
     "sass-loader": "^7.1.0",
-    "scss-loader": "0.0.1"
+    "scss-loader": "0.0.1",
+    "store": "^2.0.12"
   },
   "devDependencies": {
     "nodemon": "^1.11.0",

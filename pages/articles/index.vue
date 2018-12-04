@@ -9,8 +9,8 @@
             </div>
             <div style="display:inline-block">
                 <router-link to="form" append>
-                        <el-button size="mini">添加</el-button>
-                    </router-link>
+                    <el-button size="mini">添加</el-button>
+                </router-link>
             </div>
         </form>
         <el-table :data="list" v-loading="loading" size="mini">

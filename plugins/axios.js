@@ -21,6 +21,4 @@ export default function ({ $axios, redirect }) {
 		}
 		return Promise.reject(error);
 	})
-
-
 }
