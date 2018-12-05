@@ -1,9 +1,8 @@
 import { uploadToken } from './Cache';
 
 export default class {
-    constructor(uploadBasePath = '', drive = 'oss') {
+    constructor(uploadBasePath = '') {
         this.uploadBasePath = uploadBasePath;
-        this.drive = drive;
     }
 
     /**
@@ -48,9 +47,8 @@ export default class {
      * @param drive
      * @returns {Promise<*>}
      */
-    uploadParameter(drive = null) {
-        if (drive) this.drive = drive;
-        return uploadToken(this.drive);
+    uploadParameter() {
+        return uploadToken();
     }
 
     /**

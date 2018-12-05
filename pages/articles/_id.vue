@@ -6,8 +6,12 @@
             </el-form-item>
             <el-form-item label="图片">
                 <file-upload v-model="form.image">
-                    <img :src="form.image" alt="" class="missing" height="150">
+                    <img v-if="form.image" :src="form.image" alt="" class="missing" height="150">
+                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </file-upload>
+            </el-form-item>
+            <el-form-item label="内容">
+                <markdown-editor v-model="form.con" ref="markdownEditor" :highlight="true" :config="config"></markdown-editor>
             </el-form-item>
         </el-form>
         <div style="text-align: center">
@@ -19,6 +23,12 @@
 <script>
 import {Form, FormItem, Input, Upload} from 'element-ui';
 import FileUpload from '@/components/FileUpload';
+import markdownEditor from 'vue-simplemde/src/markdown-editor'
+import hljs from 'highlight.js';
+import 'simplemde/dist/simplemde.min.css';
+import 'highlight.js/styles/atom-one-dark.css';
+
+window.hljs = hljs;
 
 export default {
     components: {
@@ -27,6 +37,7 @@ export default {
         [Input.name]: Input,
         [Upload.name]: Upload,
         FileUpload,
+        markdownEditor,
     },
     data() {
         return {
@@ -83,21 +94,20 @@ export default {
     border-color: #409EFF;
   }
   .avatar-uploader-icon {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
     font-size: 28px;
     color: #8c939d;
-    width: 178px;
-    min-height: 178px;
-    line-height: 178px;
+    min-width: 3em;
+    min-height: 3em;
+    line-height: 3em;
     text-align: center;
-  }
-  .avatar {
-    width: 178px;
-    min-height: 178px;
-    display: block;
   }
   img.missing {
     min-height: 3em;
     min-width: 3em;
     position: relative;
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
 }
 </style>

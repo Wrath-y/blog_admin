@@ -15,11 +15,13 @@
     "babel-plugin-component": "^1.1.1",
     "cross-env": "^5.2.0",
     "element-ui": "^2.4.6",
+    "highlight.js": "^9.13.1",
     "node-sass": "^4.10.0",
     "nuxt": "^2.0.0",
     "sass-loader": "^7.1.0",
     "scss-loader": "0.0.1",
-    "store": "^2.0.12"
+    "store": "^2.0.12",
+    "vue-simplemde": "^0.5.1"
   },
   "devDependencies": {
     "nodemon": "^1.11.0",
