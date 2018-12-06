@@ -65,7 +65,7 @@ export default {
     methods: {
         async fetchList() {
             this.loading = true;
-            await this.$axios.$get('articles', this.form).then((res) => {
+            await this.$axios.get('articles', this.form).then((res) => {
                 if (res) {
                     this.list = res.Data.data;
                     this.pagination.total = res.Data.count;

@@ -9,8 +9,8 @@
             </el-form-item>
             <el-form-item label="作者">
                 <el-radio-group v-model="form.source">
-                    <el-radio :label="1">本人</el-radio>
-                    <el-radio :label="2">外部资源</el-radio>
+                    <el-radio :label="0">本人</el-radio>
+                    <el-radio :label="1">外部资源</el-radio>
                 </el-radio-group>
             </el-form-item>
             <el-form-item label="是否显示">
@@ -75,7 +75,7 @@ export default {
             this.loading = true;
             this.form.html = marked(this.form.con);
             if (this.form.id) {
-                this.$axios.$put('articles/'+this.form.id, this.form).then((res) => {
+                this.$axios.put('articles/'+this.form.id, this.form).then((res) => {
                     if (res.Message == 'Success') {
                         this.$message.success('保存成功');
                         this.form.id = res.Data.id;
@@ -88,7 +88,7 @@ export default {
 
                 return
             }
-            this.$axios.$post('articles', this.form).then((res) => {
+            this.$axios.post('articles', this.form).then((res) => {
                 if (res.Message == 'Success') {
                     this.$message.success('保存成功');
                     this.form.id = res.Data.id;

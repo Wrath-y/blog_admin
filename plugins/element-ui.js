@@ -14,3 +14,6 @@ Vue.use(Button);
 Vue.use(Form);
 Vue.use(Input);
 Vue.prototype.$message = Message;
+window.$ele = {
+  $message: Message,
+};

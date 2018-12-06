@@ -1,8 +1,10 @@
 /* eslint-disable */
 export default class {
 	constructor(data) {
-		this.error = data;
+        this.error = data;
+        $ele.$message.error(data.Message);
 		for (let error of this.errors()) {
+            
 			if (error.code !== data.code) {
 				continue;
 			}

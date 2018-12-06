@@ -3,10 +3,10 @@ import ErrorHandle from '~/api/ErrorHandle';
 
 export default function ({ $axios, redirect }) {
 	$axios.onResponse(response => {
-		if (response.data.status === 'success') {
+		if (!response.data.Code) {
 			return response.data;
 		}
-		if (response.data.code) {
+		if (response.data.Code) {
 			new ErrorHandle(response.data);
 			return Promise.reject(response.data);
 		}
