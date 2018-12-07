@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import FileUpload from '@/api/fileUpload';
+import FileUpload from '@/api/FileUpload';
 
 export default {
     props: ['value', 'crop', 'max', 'disabled', 'multiple', 'accept'],
