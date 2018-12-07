@@ -1,11 +1,12 @@
 /* eslint-disable */
+import Vue from 'vue';
 export default class {
 	constructor(data) {
         this.error = data;
         $ele.$message.error(data.Message);
 		for (let error of this.errors()) {
             
-			if (error.code !== data.code) {
+			if (error.code !== data.Code) {
 				continue;
 			}
 			if (error.message) {
@@ -21,34 +22,22 @@ export default class {
 
 	errors() {
 		return [
-            /*
-            {
-                code: 10000,
-                method: () => {
-                    for (let k in this.error.data) {
-                        let error = this.error.data[k];
-                        $ele.$message(error[0]);
-                        break;
-                    }
-                }
-            },
-            {
-                code: 10003,
-                method: () => {
-                    Mint.MessageBox.confirm('请登录后操作', '').then(
-                        action => {
-                            Vue.$router.push({
-                                name: 'Auth.Login'
-                            });
-                        },
-                        action => {}
-                    );
-                    if (Vue.$store.state.token) {
-                        Vue.$store.commit('updateToken', null);
-                    }
-                }
-            }
-            */
+            // {
+            //     code: 2013,
+            //     method: () => {
+            //         $ele.$msgbox.confirm('请登录后操作', '').then(
+            //             action => {
+            //                 Vue.$router.push({
+            //                     name: '/'
+            //                 });
+            //             },
+            //             action => {}
+            //         );
+            //         if (Vue.$store) {
+            //             Vue.$store.commit('updateToken', null);
+            //         }
+            //     }
+            // }
 		];
 	}
 }

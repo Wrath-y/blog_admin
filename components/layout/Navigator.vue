@@ -2,19 +2,19 @@
     <div class="navtop">
         <el-menu
             router
-            default-active="/"
+            default-active="/admin"
             class="el-menu-vertical-demo">
-            <el-menu-item index="/articles">
+            <el-menu-item index="/admin/articles">
                 <i class="el-icon-menu"></i>
                 <span slot="title">文章列表</span>
             </el-menu-item>
-            <el-submenu index="/setting">
+            <el-submenu index="/admin/setting">
                 <template slot="title">
                     <i class="el-icon-location"></i>
                     <span>设置</span>
                 </template>
                 <el-menu-item-group>
-                    <el-menu-item index="/">
+                    <el-menu-item index="/admin">
                         <i class="el-icon-menu"></i>
                         <span slot="title">...</span>
                     </el-menu-item>

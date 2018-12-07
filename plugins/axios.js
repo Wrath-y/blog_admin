@@ -1,7 +1,12 @@
 /* eslint-disable */
 import ErrorHandle from '~/api/ErrorHandle';
 
-export default function ({ $axios, redirect }) {
+export default function ({ $axios, redirect, store }) {
+	$axios.onRequest(config => {
+		if (store.state.token) {
+			config.headers.common['Authorization'] = store.state.token;
+		}
+	})
 	$axios.onResponse(response => {
 		if (!response.data.Code) {
 			return response.data;

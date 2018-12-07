@@ -6,6 +6,7 @@ import {
   Button,
   Form,
   Input,
+  MessageBox,
 } from 'element-ui';
 
 Vue.use(Loading.directive);
@@ -16,4 +17,5 @@ Vue.use(Input);
 Vue.prototype.$message = Message;
 window.$ele = {
   $message: Message,
+  $msgbox: MessageBox,
 };

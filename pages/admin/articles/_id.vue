@@ -47,6 +47,7 @@ import 'highlight.js/styles/atom-one-dark.css';
 window.hljs = hljs;
 
 export default {
+    middleware: 'check-auth',
     components: {
         [Form.name]: Form,
         [FormItem.name]: FormItem,
@@ -67,7 +68,7 @@ export default {
     methods: {
         async fetchData() {
             this.loading = true;
-            await this.$axios.get('articles/'+this.$route.params.id).then((res) => {
+            await this.$axios.get('admin/articles/'+this.$route.params.id).then((res) => {
                 if (res) {
                     this.form = res.Data;
                 }
@@ -78,7 +79,7 @@ export default {
         save() {
             this.loading = true;
             this.form.html = marked(this.form.con);
-            this.$axios.put('articles/'+this.$route.params.id, this.form).then((res) => {
+            this.$axios.put('admin/articles/'+this.$route.params.id, this.form).then((res) => {
                 if (res.Message == 'Success') {
                     this.$message.success('保存成功');
                 }
