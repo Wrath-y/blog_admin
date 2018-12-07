@@ -19,4 +19,4 @@ export const handle = async (apiUrl, minutes = 1, params = null) => {
  * @returns {Promise<*>}
  * @constructor
  */
-export const uploadToken = (drive) => handle('http://127.0.0.1:8080/uploads', 2);
+export const uploadToken = (drive) => handle('http://127.0.0.1:8081/uploads', 2);
