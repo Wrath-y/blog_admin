@@ -58,7 +58,7 @@ export default {
                 this.isBtnLoading = true;
                 this.$axios.post('login', this.form).then((res) => {
                     this.$store.commit('setToken', res.Data.token);
-                    this.$router.push('/admin/articles');
+                    this.$router.push('/articles');
                 }).finally(() => this.isBtnLoading = false);
             });
         },
