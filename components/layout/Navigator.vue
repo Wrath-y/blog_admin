@@ -8,6 +8,10 @@
                 <i class="el-icon-menu"></i>
                 <span slot="title">文章列表</span>
             </el-menu-item>
+            <el-menu-item index="/pixivs">
+                <i class="el-icon-picture"></i>
+                <span slot="title">pixiv</span>
+            </el-menu-item>
             <el-submenu index="/setting">
                 <template slot="title">
                     <i class="el-icon-location"></i>

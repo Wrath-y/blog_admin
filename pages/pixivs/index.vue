@@ -1,12 +1,6 @@
 <template>
 	<el-card>
         <form @submit.prevent="fetchList()">
-            <div style="width: 240px;display:inline-block">
-                <el-input placeholder="搜索" v-model="form.keyword" size="mini"/>
-            </div>
-            <div style="display:inline-block">
-                <el-button native-type="submit" size="mini">筛选</el-button>
-            </div>
             <div style="display:inline-block">
                 <router-link to="form" append>
                     <el-button size="mini">添加</el-button>
@@ -14,24 +8,22 @@
             </div>
         </form>
         <el-table :data="list" v-loading="loading" size="mini">
-            <el-table-column prop="id" label="ID" width="100"/>
-            <el-table-column prop="title" label="标题"/>
-            <el-table-column prop="tag" label="分类"/>
+            <el-table-column label="图片">
+                <template slot-scope="{row}">
+                    <img :src="`https://gilgamesh.oss-cn-hongkong.aliyuncs.com/${row.Key}`" width="100" />
+                </template>
+            </el-table-column>
             <el-table-column prop="updated_at" label="更新时间"/>
             <el-table-column>
                 <template slot-scope="{row}">
-                    <router-link :to="`${row.id}`" append>
-                        <el-button size="mini">编辑</el-button>
-                    </router-link>
                     <el-button type="danger" size="mini" @click="deleteHandler(row.id)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
         <div style="text-align: center">
-            <el-pagination layout="total, prev, pager, next"
+            <el-pagination layout="prev, next"
                            @current-change="fetchList"
-                           :page-size="pagination.page_size"
-                           :total="pagination.total">
+                           :page-size="pagination.page_size">
             </el-pagination>
         </div>
     </el-card>
@@ -52,8 +44,8 @@ export default {
         return {
             loading: false,
             pagination: {
-                total: 0,
                 page_size: 15,
+                next_marker: "",
             },
             form: {
                 page: 1,
@@ -64,15 +56,15 @@ export default {
     computed: {},
     watch: {},
     methods: {
-        async fetchList(page = null) {
+        async fetchList() {
             this.loading = true;
-            if (page) {
-                this.form.page = page;
-            }
-            await this.$axios.get('admin/articles?' + this.toQuery(this.form)).then((res) => {
+            await this.$axios.get('admin/pixivs?' + this.toQuery(this.pagination)).then((res) => {
                 if (res) {
-                    this.list = res.Data.data;
-                    this.pagination.total = res.Data.count;
+                    this.list = res.Data.Objects.map((i) => {
+                        i.Key = this.encodeUrl(i.Key);
+                        return i;
+                    });
+                    this.pagination.next_marker = res.Data.NextMarker
                 }
             }).finally(() => {
                 this.loading = false;
@@ -84,6 +76,11 @@ export default {
                 this.loading = false;
                 this.fetchList();
             });
+        },
+        encodeUrl(str) {
+            str = encodeURI(str);
+            str = str.replace(/\+/g, '%2B');
+            return str;
         },
         toQuery(json) {
             return Object.keys(json).map(function (key) {
