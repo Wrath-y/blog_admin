@@ -2,28 +2,26 @@
 	<el-card>
         <form @submit.prevent="fetchList()">
             <div style="display:inline-block">
-                <router-link to="form" append>
-                    <el-button size="mini">添加</el-button>
-                </router-link>
+                <el-button size="mini" @click="synchronizePixiv">同步pixiv</el-button>
             </div>
         </form>
         <el-table :data="list" v-loading="loading" size="mini">
             <el-table-column label="图片">
                 <template slot-scope="{row}">
-                    <img :src="`https://gilgamesh.oss-cn-hongkong.aliyuncs.com/${row.Key}`" width="100" />
+                    <img :src="`https://gilgamesh.oss-cn-hongkong.aliyuncs.com/${row.Key}??x-oss-process=image/resize,l_100`" width="100" />
                 </template>
             </el-table-column>
-            <el-table-column prop="updated_at" label="更新时间"/>
             <el-table-column>
                 <template slot-scope="{row}">
-                    <el-button type="danger" size="mini" @click="deleteHandler(row.id)">删除</el-button>
+                    <el-button type="danger" size="mini" @click="deleteHandler(row.Key)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
         <div style="text-align: center">
-            <el-pagination layout="prev, next"
+            <el-pagination layout="total, prev, pager, next"
                            @current-change="fetchList"
-                           :page-size="pagination.page_size">
+                           :page-size="pagination.page_size"
+                           :total="pagination.total">
             </el-pagination>
         </div>
     </el-card>
@@ -44,6 +42,7 @@ export default {
         return {
             loading: false,
             pagination: {
+                total: 0,
                 page_size: 15,
                 next_marker: "",
             },
@@ -70,11 +69,24 @@ export default {
                 this.loading = false;
             });
         },
-        async deleteHandler(id) {
+        async deleteHandler(name) {
             this.loading = true;
-            await this.$axios.delete('admin/articles/'+id).finally(() => {
+            await this.$axios.delete('admin/pixivs?name=' + name).finally(() => {
                 this.loading = false;
                 this.fetchList();
+            });
+        },
+        async count() {
+            await this.$axios.get('admin/pixivs/count').then((res) => {
+                if (res) {
+                    this.pagination.total = res.Data
+                }
+            })
+        },
+        async synchronizePixiv() {
+            this.loading = true;
+            await this.$axios.post('admin/pixivs').finally(() => {
+                this.loading = false;
             });
         },
         encodeUrl(str) {
@@ -89,6 +101,7 @@ export default {
         }
     },
     created() {
+        this.count();
         this.fetchList();
     },
     beforeDestroy() {
