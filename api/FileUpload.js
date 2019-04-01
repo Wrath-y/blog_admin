@@ -1,5 +1,4 @@
-import { uploadToken } from './Cache';
-
+axios = require('axios');
 export default class {
     constructor(uploadBasePath = '') {
         this.uploadBasePath = uploadBasePath;
@@ -44,11 +43,12 @@ export default class {
 
     /**
      * 获取上传参数
-     * @param drive
+     * @param data
      * @returns {Promise<*>}
      */
-    uploadParameter() {
-        return uploadToken();
+    uploadParameter(data) {
+        this.uploadParameter = data;
+        return this;
     }
 
     /**
@@ -56,7 +56,8 @@ export default class {
      * @param parameter
      * @return {*}
      */
-    handleUploadParameter(parameter) {
+    handleUploadParameter() {
+        let parameter = this.uploadParameter;
         if (parameter.access_url.substr(parameter.access_url.length - 1, 1) !== '/') {
             parameter.access_url += '/';
         }
@@ -90,8 +91,8 @@ export default class {
      */
     async uploadFile(file) {
         let uploadPath = this.uploadBasePath;
-        const uploadParameter = this.handleUploadParameter(await this.uploadParameter());
-        const uploadForm = uploadParameter.form;
+        const uploadParameter = this.handleUploadParameter();
+        const uploadForm = uploadParameter;
 
         const filename = this.genFileName(file);
         uploadPath += filename;

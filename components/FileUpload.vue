@@ -30,6 +30,7 @@ export default {
                 maxHeight: 2000,
                 crop: !!this.crop,
             },
+            upload_res: null,
         };
     },
     computed: {},
@@ -63,10 +64,16 @@ export default {
         click() {
             if (this.upload_progress || this.disabled) return;
             this.$refs.file.click();
+            if (!this.upload_res) {
+                this.$axios.get('admin/uploads').then((res) => {
+                    this.upload_res = res.Data;
+                })
+            }
         },
         async onChange(event) {
             this.input.disabled = true;
             const filesUrl = await (new FileUpload())
+                .uploadParameter(this.upload_res)
                 .uploadStart(event.target.files);
             for (const fileUrl of filesUrl) {
                 this.$emit('input', fileUrl);
