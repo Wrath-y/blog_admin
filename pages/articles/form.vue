@@ -5,7 +5,7 @@
                 <el-input v-model="form.title"></el-input>
             </el-form-item>
             <el-form-item label="标签">
-                <el-input v-model="form.tag"></el-input>
+                <el-input v-model="form.tags"></el-input>
             </el-form-item>
             <el-form-item label="作者">
                 <el-radio-group v-model="form.source">

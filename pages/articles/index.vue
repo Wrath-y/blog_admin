@@ -16,7 +16,7 @@
         <el-table :data="list" v-loading="loading" size="mini">
             <el-table-column prop="id" label="ID" width="100"/>
             <el-table-column prop="title" label="标题"/>
-            <el-table-column prop="tag" label="分类"/>
+            <el-table-column prop="tags" label="分类"/>
             <el-table-column prop="updated_at" label="更新时间"/>
             <el-table-column>
                 <template slot-scope="{row}">
