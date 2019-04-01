@@ -119,7 +119,6 @@ export default class {
         if (!file.name) {
             return (new Date()).getTime() + '.jpg';
         }
-        const ext = file.name.split('.').pop();
-        return (new Date()).getTime() + '.' + ext;
+        return file.name;
     }
 }
