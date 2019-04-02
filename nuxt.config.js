@@ -76,14 +76,5 @@ module.exports = {
     extend(config, ctx) {
       
     }
-  },
-  generate: {
-    routes: function() {
-      let arr = [];
-      for (let i = 1; i < 100; i++) {
-        arr.push(i);
-      }
-      return arr;
-    }
   }
 }
