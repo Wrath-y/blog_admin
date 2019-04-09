@@ -1,5 +1,6 @@
 export default function ({ store, route, redirect }) {
-    if (!store.state.token && route !== '/') {
+    let token = store.state.token || window.sessionStorage.getItem("token");
+    if (!token && route !== '/') {
         return redirect('/');
     }
 }

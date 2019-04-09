@@ -9,6 +9,7 @@ export default () => new Vuex.Store({
     },
     mutations: {
         setToken(state, token) {
+            window.sessionStorage.setItem("token", token);
             return state.token = token;
         },
     }
