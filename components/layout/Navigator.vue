@@ -5,12 +5,16 @@
             default-active="/articles"
             class="el-menu-vertical-demo">
             <el-menu-item index="/articles">
-                <i class="el-icon-menu"></i>
-                <span slot="title">文章列表</span>
+                <i class="el-icon-document"></i>
+                <span slot="title">articles</span>
             </el-menu-item>
             <el-menu-item index="/pixivs">
                 <i class="el-icon-picture"></i>
                 <span slot="title">pixiv</span>
+            </el-menu-item>
+            <el-menu-item index="/harems">
+                <i class="el-icon-phone"></i>
+                <span slot="title">harems</span>
             </el-menu-item>
             <el-submenu index="/setting">
                 <template slot="title">

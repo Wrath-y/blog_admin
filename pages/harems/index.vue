@@ -15,8 +15,9 @@
         </form>
         <el-table :data="list" v-loading="loading" size="mini">
             <el-table-column prop="id" label="ID" width="100"/>
-            <el-table-column prop="title" label="标题"/>
-            <el-table-column prop="tags" label="分类"/>
+            <el-table-column prop="name" label="昵称"/>
+            <el-table-column prop="email" label="email"/>
+            <el-table-column prop="url" label="url"/>
             <el-table-column prop="updated_at" label="更新时间"/>
             <el-table-column>
                 <template slot-scope="{row}">
@@ -69,7 +70,7 @@ export default {
             if (page) {
                 this.form.page = page;
             }
-            await this.$axios.get('admin/articles?' + this.toQuery(this.form)).then((res) => {
+            await this.$axios.get('admin/harems?' + this.toQuery(this.form)).then((res) => {
                 if (res) {
                     this.list = res.Data.data;
                     this.pagination.total = res.Data.count;
@@ -80,7 +81,7 @@ export default {
         },
         async deleteHandler(id) {
             this.loading = true;
-            await this.$axios.delete('admin/articles/'+id).finally(() => {
+            await this.$axios.delete('admin/harems/'+id).finally(() => {
                 this.loading = false;
                 this.fetchList();
             });
