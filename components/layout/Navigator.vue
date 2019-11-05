@@ -16,6 +16,10 @@
                 <i class="el-icon-phone"></i>
                 <span slot="title">harems</span>
             </el-menu-item>
+            <el-menu-item index="/comments">
+                <i class="el-icon-phone"></i>
+                <span slot="title">comments</span>
+            </el-menu-item>
             <el-submenu index="/setting">
                 <template slot="title">
                     <i class="el-icon-location"></i>
