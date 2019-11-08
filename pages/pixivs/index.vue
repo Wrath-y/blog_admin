@@ -2,13 +2,16 @@
 	<el-card>
         <form @submit.prevent="fetchList()">
             <div style="display:inline-block">
+                <el-input size="mini" v-model="form.cookie" placeholder="请输入cookie"></el-input>
+            </div>
+            <div style="display:inline-block">
                 <el-button size="mini" @click="synchronizePixiv">同步pixiv</el-button>
             </div>
         </form>
         <el-table :data="list" v-loading="loading" size="mini">
             <el-table-column label="图片">
                 <template slot-scope="{row}">
-                    <img :src="`https://gilgamesh.oss-cn-hongkong.aliyuncs.com/${row.Key}??x-oss-process=image/resize,l_100`" width="100" />
+                    <img :src="`https:///wrath-pixiv.oss-cn-shanghai.aliyuncs.com/${row.Key}??x-oss-process=image/resize,l_100`" width="100" />
                 </template>
             </el-table-column>
             <el-table-column>
@@ -48,6 +51,7 @@ export default {
             },
             form: {
                 page: 1,
+                cookie: ''
             },
 			list: [],
 		};
@@ -85,7 +89,7 @@ export default {
         },
         async synchronizePixiv() {
             this.loading = true;
-            await this.$axios.post('admin/pixivs').finally(() => {
+            await this.$axios.post('admin/pixivs', this.form).finally(() => {
                 this.loading = false;
             });
         },
