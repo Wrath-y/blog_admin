@@ -17,6 +17,18 @@
             <el-table-column prop="id" label="ID" width="100"/>
             <el-table-column prop="title" label="标题"/>
             <el-table-column prop="tags" label="分类"/>
+            <el-table-column label="是否显示">
+                <template slot-scope="{row}">
+                    <p v-if="row.status == 0">否</p>
+                    <p v-if="row.status == 1">是</p>
+                </template>
+            </el-table-column>
+            <el-table-column prop="source" label="来源">
+                <template slot-scope="{row}">
+                    <p v-if="row.source == 0">自己</p>
+                    <p v-if="row.source == 1">外部</p>
+                </template>
+            </el-table-column>
             <el-table-column prop="updated_at" label="更新时间"/>
             <el-table-column>
                 <template slot-scope="{row}">
