@@ -3,10 +3,10 @@ import Vue from 'vue';
 export default class {
 	constructor(data) {
         this.error = data;
-        $ele.$message.error(data.Message);
+        $ele.$message.error(data.message);
 		for (let error of this.errors()) {
             
-			if (error.code !== data.Code) {
+			if (error.code !== data.code) {
 				continue;
 			}
 			if (error.message) {

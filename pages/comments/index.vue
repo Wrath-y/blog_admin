@@ -7,15 +7,10 @@
             <div style="display:inline-block">
                 <el-button native-type="submit" size="mini">筛选</el-button>
             </div>
-            <div style="display:inline-block">
-                <router-link to="form" append>
-                    <el-button size="mini">添加</el-button>
-                </router-link>
-            </div>
         </form>
         <el-table :data="list" v-loading="loading" size="mini">
             <el-table-column prop="id" label="ID" width="100"/>
-            <el-table-column prop="content" label="content" width="1200"/>
+            <el-table-column prop="content" label="content" width="600"/>
             <el-table-column prop="updated_at" label="更新时间"/>
             <el-table-column>
                 <template slot-scope="{row}">
@@ -67,8 +62,8 @@ export default {
             }
             await this.$axios.get('admin/comments?' + this.toQuery(this.form)).then((res) => {
                 if (res) {
-                    this.list = res.Data.data;
-                    this.pagination.total = res.Data.count;
+                    this.list = res.data.list;
+                    this.pagination.total = res.data.count;
                 }
             }).finally(() => {
                 this.loading = false;

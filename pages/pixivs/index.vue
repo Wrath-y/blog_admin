@@ -63,11 +63,11 @@ export default {
             this.loading = true;
             await this.$axios.get('admin/pixivs?' + this.toQuery(this.pagination)).then((res) => {
                 if (res) {
-                    this.list = res.Data.Objects.map((i) => {
+                    this.list = res.data.Objects.map((i) => {
                         i.Key = this.encodeUrl(i.Key);
                         return i;
                     });
-                    this.pagination.next_marker = res.Data.NextMarker
+                    this.pagination.next_marker = res.data.NextMarker
                 }
             }).finally(() => {
                 this.loading = false;
@@ -83,7 +83,7 @@ export default {
         async count() {
             await this.$axios.get('admin/pixivs/count').then((res) => {
                 if (res) {
-                    this.pagination.total = res.Data
+                    this.pagination.total = res.data
                 }
             })
         },

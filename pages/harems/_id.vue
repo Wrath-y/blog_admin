@@ -38,9 +38,9 @@ export default {
     methods: {
         async fetchData() {
             this.loading = true;
-            await this.$axios.get('admin/harems/'+this.$route.params.id).then((res) => {
+            await this.$axios.get('admin/friends/'+this.$route.params.id).then((res) => {
                 if (res) {
-                    this.form = res.Data;
+                    this.form = res.data;
                 }
             }).finally(() => {
                 this.loading = false;
@@ -48,8 +48,8 @@ export default {
         },
         save() {
             this.loading = true;
-            this.$axios.put('admin/harems/'+this.$route.params.id, this.form).then((res) => {
-                if (res.Message == 'Success') {
+            this.$axios.put('admin/friends/'+this.$route.params.id, this.form).then((res) => {
+                if (res.message == 'success') {
                     this.$message.success('保存成功');
                 }
             }).finally(() => {

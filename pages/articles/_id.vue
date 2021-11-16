@@ -26,7 +26,7 @@
                 </file-upload>
             </el-form-item>
             <el-form-item label="内容">
-                <markdown-editor v-model="form.con" ref="markdownEditor" :highlight="true"></markdown-editor>
+                <markdown-editor v-model="form.con" ref="markdownEditor" :highlight="true" />
             </el-form-item>
         </el-form>
         <div style="text-align: center">
@@ -70,7 +70,7 @@ export default {
             this.loading = true;
             await this.$axios.get('admin/articles/'+this.$route.params.id).then((res) => {
                 if (res) {
-                    this.form = res.Data;
+                    this.form = res.data;
                 }
             }).finally(() => {
                 this.loading = false;
@@ -80,7 +80,7 @@ export default {
             this.loading = true;
             this.form.html = marked(this.form.con);
             this.$axios.put('admin/articles/'+this.$route.params.id, this.form).then((res) => {
-                if (res.Message == 'Success') {
+                if (res.message == 'success') {
                     this.$message.success('保存成功');
                 }
             }).finally(() => {

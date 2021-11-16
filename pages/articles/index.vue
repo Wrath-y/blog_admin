@@ -65,7 +65,7 @@ export default {
             loading: false,
             pagination: {
                 total: 0,
-                page_size: 15,
+                page_size: 6,
             },
             form: {
                 page: 1,
@@ -83,8 +83,8 @@ export default {
             }
             await this.$axios.get('admin/articles?' + this.toQuery(this.form)).then((res) => {
                 if (res) {
-                    this.list = res.Data.data;
-                    this.pagination.total = res.Data.count;
+                    this.list = res.data.list;
+                    this.pagination.total = res.data.count;
                 }
             }).finally(() => {
                 this.loading = false;

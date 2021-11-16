@@ -44,7 +44,7 @@ export default {
             this.loading = true;
             if (this.form.id) {
                 this.$axios.put('admin/harems/'+this.form.id, this.form).then((res) => {
-                    if (res.Message == 'Success') {
+                    if (res.message == 'success') {
                         this.$message.success('保存成功');
                         this.form.id = res.Data.id;
                     } else {
@@ -57,7 +57,7 @@ export default {
                 return
             }
             this.$axios.post('admin/harems', this.form).then((res) => {
-                if (res.Message == 'Success') {
+                if (res.message == 'success') {
                     this.$message.success('保存成功');
                     this.form.id = res.Data.id;
                 } else {

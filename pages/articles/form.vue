@@ -26,7 +26,7 @@
                 </file-upload>
             </el-form-item>
             <el-form-item label="内容">
-                <markdown-editor v-model="form.con" ref="markdownEditor" :highlight="true"></markdown-editor>
+                <markdown-editor v-model="form.con" ref="markdownEditor" :highlight="true" />
             </el-form-item>
         </el-form>
         <div style="text-align: center">
@@ -63,7 +63,6 @@ export default {
 			form: {
                 title: '',
                 image: '',
-                tag: '',
                 html: '',
                 con: '',
             },
@@ -77,9 +76,9 @@ export default {
             this.form.html = marked(this.form.con);
             if (this.form.id) {
                 this.$axios.put('admin/articles/'+this.form.id, this.form).then((res) => {
-                    if (res.Message == 'Success') {
+                    if (res.message == 'success') {
                         this.$message.success('保存成功');
-                        this.form.id = res.Data.id;
+                        this.form.id = res.data.id;
                     } else {
                         this.$message.error('保存失败');
                     }
@@ -90,9 +89,9 @@ export default {
                 return
             }
             this.$axios.post('admin/articles', this.form).then((res) => {
-                if (res.Message == 'Success') {
+                if (res.message == 'success') {
                     this.$message.success('保存成功');
-                    this.form.id = res.Data.id;
+                    this.form.id = res.data.id;
                 } else {
                     this.$message.error('保存失败');
                 }

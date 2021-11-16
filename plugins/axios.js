@@ -11,10 +11,10 @@ export default function ({ $axios, redirect, store }) {
 		}
 	})
 	$axios.onResponse(response => {
-		if (!response.data.Code) {
+		if (!response.data.code) {
 			return response.data;
 		}
-		if (response.data.Code) {
+		if (response.data.code) {
 			new ErrorHandle(response.data);
 			return Promise.reject(response.data);
 		}

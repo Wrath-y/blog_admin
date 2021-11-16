@@ -70,10 +70,10 @@ export default {
             if (page) {
                 this.form.page = page;
             }
-            await this.$axios.get('admin/harems?' + this.toQuery(this.form)).then((res) => {
+            await this.$axios.get('admin/friends?' + this.toQuery(this.form)).then((res) => {
                 if (res) {
-                    this.list = res.Data.data;
-                    this.pagination.total = res.Data.count;
+                    this.list = res.data.list;
+                    this.pagination.total = res.data.count;
                 }
             }).finally(() => {
                 this.loading = false;
@@ -81,7 +81,7 @@ export default {
         },
         async deleteHandler(id) {
             this.loading = true;
-            await this.$axios.delete('admin/harems/'+id).finally(() => {
+            await this.$axios.delete('admin/friends/'+id).finally(() => {
                 this.loading = false;
                 this.fetchList();
             });
