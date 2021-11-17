@@ -21,7 +21,11 @@
     "sass-loader": "^7.3.1",
     "scss-loader": "0.0.1",
     "store": "^2.0.12",
-    "vue-simplemde": "0.5.1"
+    "vue-simplemde": "0.5.1",
+    "ali-oss": "^6.1.1",
+    "fs": "0.0.1-security",
+    "os": "^0.1.1",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "eslint-config-prettier": "^3.1.0",
