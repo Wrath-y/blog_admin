@@ -1,5 +1,5 @@
 <template>
-	<el-card>
+    <el-card>
         <el-form ref="form" :model="form" label-width="80px">
             <el-form-item label="标题">
                 <el-input v-model="form.title"></el-input>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import {Form, FormItem, Input, Radio, RadioGroup} from 'element-ui';
+import { Form, FormItem, Input, Radio, RadioGroup } from 'element-ui';
 import FileUpload from '@/components/FileUpload';
 import MarkdownEditor from 'vue-simplemde/src/markdown-editor'
 import marked from 'marked';
@@ -60,13 +60,13 @@ export default {
     data() {
         return {
             loading: false,
-			form: {
+            form: {
                 title: '',
                 image: '',
                 html: '',
                 con: '',
             },
-		};
+        };
     },
     computed: {},
     watch: {},
@@ -75,8 +75,8 @@ export default {
             this.loading = true;
             this.form.html = marked(this.form.con);
             if (this.form.id) {
-                this.$axios.put('admin/articles/'+this.form.id, this.form).then((res) => {
-                    if (res.message == 'success') {
+                this.$axios.put('articles/' + this.form.id, this.form).then((res) => {
+                    if (res.code == 200) {
                         this.$message.success('保存成功');
                         this.form.id = res.data.id;
                     } else {
@@ -88,7 +88,7 @@ export default {
 
                 return
             }
-            this.$axios.post('admin/articles', this.form).then((res) => {
+            this.$axios.post('articles', this.form).then((res) => {
                 if (res.message == 'success') {
                     this.$message.success('保存成功');
                     this.form.id = res.data.id;

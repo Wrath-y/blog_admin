@@ -1,5 +1,5 @@
 <template>
-	<el-card>
+    <el-card>
         <el-form ref="form" :model="form" label-width="80px">
             <el-form-item label="昵称">
                 <el-input v-model="form.name"></el-input>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import {Form, FormItem, Input} from 'element-ui';
+import { Form, FormItem, Input } from 'element-ui';
 
 export default {
     middleware: 'check-auth',
@@ -30,12 +30,12 @@ export default {
     data() {
         return {
             loading: false,
-			form: {
+            form: {
                 name: '',
                 email: '',
                 url: '',
             },
-		};
+        };
     },
     computed: {},
     watch: {},
@@ -43,8 +43,8 @@ export default {
         save() {
             this.loading = true;
             if (this.form.id) {
-                this.$axios.put('admin/harems/'+this.form.id, this.form).then((res) => {
-                    if (res.message == 'success') {
+                this.$axios.put('harems/' + this.form.id, this.form).then((res) => {
+                    if (res.code == 200) {
                         this.$message.success('保存成功');
                         this.form.id = res.Data.id;
                     } else {
@@ -56,7 +56,7 @@ export default {
 
                 return
             }
-            this.$axios.post('admin/harems', this.form).then((res) => {
+            this.$axios.post('harems', this.form).then((res) => {
                 if (res.message == 'success') {
                     this.$message.success('保存成功');
                     this.form.id = res.Data.id;

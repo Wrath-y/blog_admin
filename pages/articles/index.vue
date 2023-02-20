@@ -81,7 +81,7 @@ export default {
             if (page) {
                 this.form.page = page;
             }
-            await this.$axios.get('admin/articles?' + this.toQuery(this.form)).then((res) => {
+            await this.$axios.get('articles?' + this.toQuery(this.form)).then((res) => {
                 if (res) {
                     this.list = res.data.list;
                     this.pagination.total = res.data.count;
@@ -92,7 +92,7 @@ export default {
         },
         async deleteHandler(id) {
             this.loading = true;
-            await this.$axios.delete('admin/articles/'+id).finally(() => {
+            await this.$axios.delete('articles/'+id).finally(() => {
                 this.loading = false;
                 this.fetchList();
             });

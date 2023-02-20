@@ -1,5 +1,5 @@
 <template>
-	<el-card>
+    <el-card>
         <el-form ref="form" :model="form" label-width="80px">
             <el-form-item label="昵称">
                 <el-input v-model="form.name"></el-input>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import {Form, FormItem, Input} from 'element-ui';
+import { Form, FormItem, Input } from 'element-ui';
 
 export default {
     middleware: 'check-auth',
@@ -31,14 +31,14 @@ export default {
         return {
             loading: false,
             form: {},
-		};
+        };
     },
     computed: {},
     watch: {},
     methods: {
         async fetchData() {
             this.loading = true;
-            await this.$axios.get('admin/friends/'+this.$route.params.id).then((res) => {
+            await this.$axios.get('friends/' + this.$route.params.id).then((res) => {
                 if (res) {
                     this.form = res.data;
                 }
@@ -48,8 +48,8 @@ export default {
         },
         save() {
             this.loading = true;
-            this.$axios.put('admin/friends/'+this.$route.params.id, this.form).then((res) => {
-                if (res.message == 'success') {
+            this.$axios.put('friends/' + this.$route.params.id, this.form).then((res) => {
+                if (res.code == 200) {
                     this.$message.success('保存成功');
                 }
             }).finally(() => {

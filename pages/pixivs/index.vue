@@ -1,5 +1,5 @@
 <template>
-	<el-card>
+    <el-card>
         <form @submit.prevent="fetchList()">
             <div style="display:inline-block">
                 <el-input size="mini" v-model="form.cookie" placeholder="请输入cookie"></el-input>
@@ -11,7 +11,8 @@
         <el-table :data="list" v-loading="loading" size="mini">
             <el-table-column label="图片">
                 <template slot-scope="{row}">
-                    <img :src="`https:///wrath-pixiv.oss-cn-shanghai.aliyuncs.com/${row.Key}??x-oss-process=image/resize,l_100`" width="100" />
+                    <img :src="`https:///wrath-pixiv.oss-cn-shanghai.aliyuncs.com/${row.Key}??x-oss-process=image/resize,l_100`"
+                        width="100" />
                 </template>
             </el-table-column>
             <el-table-column>
@@ -21,17 +22,15 @@
             </el-table-column>
         </el-table>
         <div style="text-align: center">
-            <el-pagination layout="total, prev, pager, next"
-                           @current-change="fetchList"
-                           :page-size="pagination.page_size"
-                           :total="pagination.total">
+            <el-pagination layout="total, prev, pager, next" @current-change="fetchList" :page-size="pagination.page_size"
+                :total="pagination.total">
             </el-pagination>
         </div>
     </el-card>
 </template>
 
 <script>
-import {Table, TableColumn, Pagination, Form} from 'element-ui';
+import { Table, TableColumn, Pagination, Form } from 'element-ui';
 
 export default {
     middleware: 'check-auth',
@@ -53,15 +52,15 @@ export default {
                 page: 1,
                 cookie: ''
             },
-			list: [],
-		};
+            list: [],
+        };
     },
     computed: {},
     watch: {},
     methods: {
         async fetchList() {
             this.loading = true;
-            await this.$axios.get('admin/pixivs?' + this.toQuery(this.pagination)).then((res) => {
+            await this.$axios.get('pixivs?' + this.toQuery(this.pagination)).then((res) => {
                 if (res) {
                     this.list = res.data.Objects.map((i) => {
                         i.Key = this.encodeUrl(i.Key);
@@ -75,13 +74,13 @@ export default {
         },
         async deleteHandler(name) {
             this.loading = true;
-            await this.$axios.delete('admin/pixivs?name=' + name).finally(() => {
+            await this.$axios.delete('pixivs?name=' + name).finally(() => {
                 this.loading = false;
                 this.fetchList();
             });
         },
         async count() {
-            await this.$axios.get('admin/pixivs/count').then((res) => {
+            await this.$axios.get('pixivs/count').then((res) => {
                 if (res) {
                     this.pagination.total = res.data
                 }
@@ -89,7 +88,7 @@ export default {
         },
         async synchronizePixiv() {
             this.loading = true;
-            await this.$axios.post('admin/pixivs', this.form).finally(() => {
+            await this.$axios.post('pixivs', this.form).finally(() => {
                 this.loading = false;
             });
         },

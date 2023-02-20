@@ -1,5 +1,5 @@
 <template>
-	<el-card>
+    <el-card>
         <el-form ref="form" :model="form" label-width="80px">
             <el-form-item label="标题">
                 <el-input v-model="form.title"></el-input>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import {Form, FormItem, Input, Radio, RadioGroup} from 'element-ui';
+import { Form, FormItem, Input, Radio, RadioGroup } from 'element-ui';
 import FileUpload from '@/components/FileUpload';
 import MarkdownEditor from 'vue-simplemde/src/markdown-editor'
 import marked from 'marked';
@@ -61,14 +61,14 @@ export default {
         return {
             loading: false,
             form: {},
-		};
+        };
     },
     computed: {},
     watch: {},
     methods: {
         async fetchData() {
             this.loading = true;
-            await this.$axios.get('admin/articles/'+this.$route.params.id).then((res) => {
+            await this.$axios.get('articles/' + this.$route.params.id).then((res) => {
                 if (res) {
                     this.form = res.data;
                 }
@@ -79,8 +79,8 @@ export default {
         save() {
             this.loading = true;
             this.form.html = marked(this.form.con);
-            this.$axios.put('admin/articles/'+this.$route.params.id, this.form).then((res) => {
-                if (res.message == 'success') {
+            this.$axios.put('articles/' + this.$route.params.id, this.form).then((res) => {
+                if (res.code == 200) {
                     this.$message.success('保存成功');
                 }
             }).finally(() => {
@@ -100,17 +100,19 @@ export default {
 </script>
 
 <style scope>
-  .avatar-uploader .el-upload {
+.avatar-uploader .el-upload {
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-  }
-  .avatar-uploader .el-upload:hover {
+}
+
+.avatar-uploader .el-upload:hover {
     border-color: #409EFF;
-  }
-  .avatar-uploader-icon {
+}
+
+.avatar-uploader-icon {
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
     font-size: 28px;
@@ -119,8 +121,9 @@ export default {
     min-height: 3em;
     line-height: 3em;
     text-align: center;
-  }
-  img.missing {
+}
+
+img.missing {
     min-height: 3em;
     min-width: 3em;
     position: relative;
