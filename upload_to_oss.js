@@ -18,7 +18,7 @@ const client = new OSS({
  */
 function addFileToOSSSync(src, dist) {
   let docs = fs.readdirSync(src);
-  docs.forEach(function(doc) {
+  docs.forEach(function (doc) {
     let _src = src + "/" + doc,
       _dist = dist + "/" + doc;
     let st = fs.statSync(_src);
@@ -37,7 +37,7 @@ function addFileToOSSSync(src, dist) {
  */
 async function putOSS(src, dist) {
   try {
-    await client.put("/"+dist, src);
+    await client.put("/" + dist, src);
     console.log(src + "/" + dist + "上传oss成功");
   } catch (e) {
     console.log("上传失败".e);
@@ -49,7 +49,7 @@ async function putOSS(src, dist) {
  */
 async function upFile(dirName = '') {
   try {
-    await addFileToOSSSync(PUBLIC_PATH + dirName + "/dist", '');
+    await addFileToOSSSync(PUBLIC_PATH + dirName + "/dist", 'static_admin');
   } catch (err) {
     console.log(dirName + "上传oss成功失败", err);
   }

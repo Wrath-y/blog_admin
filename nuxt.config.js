@@ -63,7 +63,7 @@ module.exports = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
-    baseURL: 'https://wrath.cc/go/',
+    baseURL: 'https://admin.wrath.cc/go/',
   },
 
   /*
@@ -74,7 +74,7 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      
+
     }
   }
 }
