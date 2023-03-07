@@ -65,7 +65,7 @@ export default {
             if (this.upload_progress || this.disabled) return;
             this.$refs.file.click();
             if (!this.upload_res) {
-                this.$axios.get('admin/uploads').then((res) => {
+                this.$axios.get('uploads').then((res) => {
                     this.upload_res = res.Data;
                 })
             }
