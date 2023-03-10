@@ -38,7 +38,7 @@ export default {
     methods: {
         async fetchData() {
             this.loading = true;
-            await this.$axios.get('friends/' + this.$route.params.id).then((res) => {
+            await this.$axios.get('friend_links/' + this.$route.params.id).then((res) => {
                 if (res) {
                     this.form = res.data;
                 }
@@ -48,7 +48,7 @@ export default {
         },
         save() {
             this.loading = true;
-            this.$axios.put('friends/' + this.$route.params.id, this.form).then((res) => {
+            this.$axios.put('friend_links/' + this.$route.params.id, this.form).then((res) => {
                 if (res.code == 200) {
                     this.$message.success('保存成功');
                 }

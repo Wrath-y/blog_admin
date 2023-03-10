@@ -43,7 +43,7 @@ export default {
         save() {
             this.loading = true;
             if (this.form.id) {
-                this.$axios.put('harems/' + this.form.id, this.form).then((res) => {
+                this.$axios.put('friend_links/' + this.form.id, this.form).then((res) => {
                     if (res.code == 200) {
                         this.$message.success('保存成功');
                         this.form.id = res.Data.id;
@@ -56,7 +56,7 @@ export default {
 
                 return
             }
-            this.$axios.post('harems', this.form).then((res) => {
+            this.$axios.post('friend_links', this.form).then((res) => {
                 if (res.message == 'success') {
                     this.$message.success('保存成功');
                     this.form.id = res.Data.id;

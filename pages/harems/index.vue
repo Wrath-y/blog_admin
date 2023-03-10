@@ -68,7 +68,7 @@ export default {
             if (page) {
                 this.form.page = page;
             }
-            await this.$axios.get('friends?' + this.toQuery(this.form)).then((res) => {
+            await this.$axios.get('friend_links?' + this.toQuery(this.form)).then((res) => {
                 if (res) {
                     this.list = res.data.list;
                     this.pagination.total = res.data.count;
@@ -79,7 +79,7 @@ export default {
         },
         async deleteHandler(id) {
             this.loading = true;
-            await this.$axios.delete('friends/' + id).finally(() => {
+            await this.$axios.delete('friend_links/' + id).finally(() => {
                 this.loading = false;
                 this.fetchList();
             });
