@@ -15,7 +15,7 @@ RUN npm install; \
     node upload_to_oss.js
 
 # 阶段二
-FROM node:17.0.1-alpine3.14-slim
+FROM node:17.0.1-alpine3.14
 WORKDIR /app
 
 COPY --from=builder /build/.nuxt ./nuxt
