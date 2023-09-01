@@ -25,6 +25,9 @@
                     <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </file-upload>
             </el-form-item>
+            <el-form-item label="简介">
+                <el-input type="textarea" :rows="3" placeholder="请输入内容" v-model="form.intro"></el-input>
+            </el-form-item>
             <el-form-item label="内容">
                 <markdown-editor v-model="form.con" ref="markdownEditor" :highlight="true" />
             </el-form-item>

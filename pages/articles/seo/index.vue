@@ -7,13 +7,23 @@
             <div style="display:inline-block">
                 <el-button native-type="submit" size="mini">筛选</el-button>
             </div>
+            <div style="display:inline-block">
+                <router-link to="form" append>
+                    <el-button size="mini">添加</el-button>
+                </router-link>
+            </div>
         </form>
         <el-table :data="list" v-loading="loading" size="mini">
             <el-table-column prop="id" label="ID" width="100" />
-            <el-table-column prop="content" label="content" width="600" />
+            <el-table-column prop="name" label="昵称" />
+            <el-table-column prop="email" label="email" />
+            <el-table-column prop="url" label="url" />
             <el-table-column prop="update_time" label="更新时间" />
             <el-table-column>
                 <template slot-scope="{row}">
+                    <router-link :to="`${row.id}`" append>
+                        <el-button size="mini">编辑</el-button>
+                    </router-link>
                     <el-button type="danger" size="mini" @click="deleteHandler(row.id)">删除</el-button>
                 </template>
             </el-table-column>
@@ -58,7 +68,7 @@ export default {
             if (page) {
                 this.form.page = page;
             }
-            await this.$axios.get('comments?' + this.toQuery(this.form)).then((res) => {
+            await this.$axios.get('friend_links?' + this.toQuery(this.form)).then((res) => {
                 if (res) {
                     this.list = res.data.list;
                     this.pagination.total = res.data.count;
@@ -69,7 +79,7 @@ export default {
         },
         async deleteHandler(id) {
             this.loading = true;
-            await this.$axios.delete('comments/' + id).finally(() => {
+            await this.$axios.delete('friend_links/' + id).finally(() => {
                 this.loading = false;
                 this.fetchList();
             });
