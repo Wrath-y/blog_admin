@@ -11,6 +11,7 @@ export default function ({ $axios, redirect, store }) {
 		}
 	})
 	$axios.onResponse(response => {
+		new ErrorHandle(response.data)
 		return response.data;
 	})
 }

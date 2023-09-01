@@ -8,15 +8,15 @@
                 <i class="el-icon-document"></i>
                 <span slot="title">articles</span>
             </el-menu-item>
-            <el-menu-item index="/pixivs">
+            <el-menu-item index="/pixiv">
                 <i class="el-icon-picture"></i>
                 <span slot="title">pixiv</span>
             </el-menu-item>
-            <el-menu-item index="/harems">
+            <el-menu-item index="/friend">
                 <i class="el-icon-phone"></i>
                 <span slot="title">harems</span>
             </el-menu-item>
-            <el-menu-item index="/comments">
+            <el-menu-item index="/comment">
                 <i class="el-icon-phone"></i>
                 <span slot="title">comments</span>
             </el-menu-item>
